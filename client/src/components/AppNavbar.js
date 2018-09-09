@@ -1,4 +1,8 @@
 import React, { Component } from 'react'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCodeBranch } from '@fortawesome/free-solid-svg-icons'
+
 
 import {
   Collapse,
@@ -10,6 +14,8 @@ import {
   NavLink,
   Container 
 } from 'reactstrap'
+
+library.add(faCodeBranch)
 
 class AppNavbar extends Component {
   state = {
@@ -27,13 +33,13 @@ class AppNavbar extends Component {
       <div>
       <Navbar color="dark" dark expand="sm" className="mb-5">
         <Container>
-          <NavbarBrand href="/">Players finder</NavbarBrand>
+          <NavbarBrand href="/">Footbal Player Finder</NavbarBrand>
           <NavbarToggler onClick="{this.toggle}"></NavbarToggler>
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
                 <NavLink href="https://github.com/pizzasperoni/fe-exercise">
-                  Github
+                <FontAwesomeIcon icon="code-branch"></FontAwesomeIcon>
                 </NavLink>
               </NavItem>
             </Nav>
