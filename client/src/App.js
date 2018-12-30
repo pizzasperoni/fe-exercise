@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
+import FilterablePlayersTable from './components/FilterablePlayersTable'
+import { Provider } from 'react-redux'
+import store from './store'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
-import AppNavbar from './components/AppNavbar';
-import PlayerForm from './components/PlayerForm';
 
 
 class App extends Component {
+  
   render() {
     return (
-      <div className="App">
-        <AppNavbar></AppNavbar>
-        <div class="container">
-          <PlayerForm></PlayerForm>
+      <Provider store={store}>
+        <div>
+          <FilterablePlayersTable />
+
         </div>
-      </div> 
+        </Provider> 
     );
   }
 }
