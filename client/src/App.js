@@ -12,11 +12,13 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <div>
+        <header>
+          <h1>Football player finder</h1>
+        </header>
+        <div className="filterable-table">
           <FilterablePlayersTable />
-
         </div>
-        </Provider> 
+      </Provider> 
     );
   }
 }

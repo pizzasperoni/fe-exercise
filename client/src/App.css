@@ -1,0 +1,22 @@
+.filterable-table {
+  display: flex;
+  justify-content: center;
+} 
+
+header {
+  color: white;
+  background-color: darkslategray;
+  display: flex;
+  margin: auto;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  width: 70%;
+}
+
+header h1 {
+  font-family: "Helvetica";
+  font-size: 30px;
+  font-weight: bold;
+}
