@@ -1,11 +1,12 @@
 import React from 'react'
-import SearchBar from './SearchBar'
 import { connect } from 'react-redux'
+import SearchBarContainer from '../containers/SearchBarContainer'
+
 
 function FilterablePlayersTable() {
   return (
     <div>
-      <SearchBar />
+      <SearchBarContainer />
     </div>
   )
 }

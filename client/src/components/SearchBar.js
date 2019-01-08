@@ -1,22 +1,8 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
-import { fetchPlayers } from '../actions/searchBarActions'
-import { Button, Form, FormGroup, Label, Input} from 'reactstrap'
+import React, { PureComponent } from 'react'
+import { Button, Form, Input} from 'reactstrap'
 
-class SearchBar extends Component {
 
-  constructor(props){
-    super(props)
-    this.state = {
-      name: '',
-      position: '',
-      age: ''
-    }
-    this.onChange = this.onChange.bind(this)
-    this.onSubmit = this.onSubmit.bind(this)
-  }
-
+class SearchBar extends PureComponent {
   onChange(e) {
     this.setState({[e.target.name]: e.target.value})
   }
@@ -32,12 +18,13 @@ class SearchBar extends Component {
     this.props.fetchPlayers(player)
   }
 
-  render() {
-    return (
+  
+  render(){
+    return(
       <div>
-        <Form inline onSubmit={this.onSubmit}>
+        <Form inline>
           <div>
-            <Input type="text" placeholder="Name" value={this.state.name} onChange={this.onChange}/>
+            <Input type="text" placeholder="Name" />
           </div>
           <div>
           <Input type="select" name="select">
@@ -49,7 +36,7 @@ class SearchBar extends Component {
           </Input>
           </div>
           <div>
-            <Input type="number" placeholder="Age" value={this.state.number} onChange={this.onChange}/>
+            <Input type="number" placeholder="Age"  />
           </div>
           <div>
             <Button type="submit">Submit</Button>
@@ -57,15 +44,10 @@ class SearchBar extends Component {
         </Form>
       </div>
     )
+    
   }
 }
 
-const mapStateToProps = state => ({
-  players: state.players
-})
 
-SearchBar.propTypes = {
-  fetchPlayers: PropTypes.func.isrequired
-}
 
-export default connect(mapStateToProps, { fetchPlayers })(SearchBar) 
+export default SearchBar
