@@ -13,7 +13,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <header>
-          <h1>Football player finder</h1>
+          <h1>Player finder</h1>
         </header>
         <div className="filterable-table">
           <FilterablePlayersTable />

@@ -1,4 +1,4 @@
-import { FETCH_PLAYERS } from '../actions/types'
+import { FETCH_PLAYERS, FIND_PLAYER } from '../actions/types'
 
 const initialState = {
   players: [],
@@ -11,6 +11,11 @@ export default function(state = initialState, action){
       return {
         ...state,
         players: action.payload
+      }
+    case FIND_PLAYER:
+      return {
+        ...state,
+        player: action.payload
       }
     default:
       return state

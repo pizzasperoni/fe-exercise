@@ -3,31 +3,16 @@ import { Button, Form, Input} from 'reactstrap'
 
 
 class SearchBar extends PureComponent {
-  onChange(e) {
-    this.setState({[e.target.name]: e.target.value})
-  }
 
-  onSubmit(e) {
-    e.preventDefault()
-
-    const player = {
-      name: this.state.name,
-      position: this.state.position,
-      age: this.state.age
-    }
-    this.props.fetchPlayers(player)
-  }
-
-  
   render(){
     return(
       <div>
-        <Form inline>
+        <Form inline onSubmit={this.props.onSubmit}>
           <div>
-            <Input type="text" placeholder="Name" />
+            <Input type="text" placeholder="Name" value={this.props.name}/>
           </div>
           <div>
-          <Input type="select" name="select">
+          <Input type="select" name="select" value={this.props.position}>
             <option value="position">Position</option>
             <option value="goal_keeper">Goal Keeper</option>
             <option value="defender">Defender</option>
@@ -36,18 +21,15 @@ class SearchBar extends PureComponent {
           </Input>
           </div>
           <div>
-            <Input type="number" placeholder="Age"  />
+            <Input type="number" placeholder="Age" value={this.props.age}/>
           </div>
           <div>
-            <Button type="submit">Submit</Button>
+            <Button type="submit" >Submit</Button>
           </div>
         </Form>
       </div>
     )
-    
   }
 }
-
-
 
 export default SearchBar
