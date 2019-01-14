@@ -1,16 +1,19 @@
 import React, { Component } from 'react'
-import SearchBar from '../components/SearchBar'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { fetchPlayers, findPlayer } from '../actions/searchBarActions'
+import { fetchPlayers, findPlayer } from '../../actions/searchBarActions'
+
+import Select from '../../components/form/Select'
+import SingleInput from '../../components/form/SingleInput'
 
 class SearchBarContainer extends Component {
   constructor(props){
     super(props)
     this.state = {
-      name: '',
-      position: '',
-      age: ''
+      playerName: '',
+      playerPositions: [],
+      playerPosition: '',
+      playerAge: ''
     }
   }
 
@@ -40,7 +43,28 @@ class SearchBarContainer extends Component {
   render() {
     return (
       <div>
-        <SearchBar onSubmit={this.onSubmit} onChange={this.onChange} player={this.state} />
+        <h1> esta es la tabla</h1>
+        <SingleInput 
+          inputType={'text'}
+          title={'Player name'}
+          controlFunc={this.handlePlayerNameChange}
+          content={this.state.playerName}
+          placeholder={'Player name'}
+        />
+        <Select 
+          name={'position'}
+          placeholder={'Position'}
+          controllerFunc={this.handlePositionSelect}
+          options={this.state.playerPositions}
+          selectedOption={this.state.playerPosition}
+        />
+        <SingleInput 
+          inputType={'number'}
+          title={'Age'}
+          controlFunc={this.handlePlayerAgeChange}
+          content={this.state.playerAge}
+          placeholder={'Age'}
+        />
       </div>
     )
   }
