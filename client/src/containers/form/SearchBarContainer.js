@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { fetchPlayers, findPlayer } from '../../actions/searchBarActions'
-
+import { Form, Button } from 'reactstrap'
 import Select from '../../components/form/Select'
 import SingleInput from '../../components/form/SingleInput'
 
@@ -11,8 +11,8 @@ class SearchBarContainer extends Component {
     super(props)
     this.state = {
       playerName: '',
-      playerPositions: [],
-      playerPosition: '',
+      playerPositions: ['Goal Keeper', 'Defender', 'Midfielder', 'Forward'],
+      playerPosition: 'Position',
       playerAge: ''
     }
   }
@@ -20,6 +20,24 @@ class SearchBarContainer extends Component {
   componentWillMount(){
     this.props.fetchPlayers()
     console.log('props', this.props)
+  }
+
+  handleFormSubmit = (e) => {
+    e.preventDefault()
+    console.log('state', this.state)
+  }
+
+  handlePlayerNameChange = e => {
+    console.log('handle player name')
+    this.setState({playerName : e.target.value})
+  }
+
+  handlePlayerAgeChange = e => {
+    console.log('handle player age')
+  }
+
+  handlePositionSelect = e => {
+    console.log('handle position select')
   }
 
   onChange = (e) => {
@@ -43,28 +61,30 @@ class SearchBarContainer extends Component {
   render() {
     return (
       <div>
-        <h1> esta es la tabla</h1>
-        <SingleInput 
-          inputType={'text'}
-          title={'Player name'}
-          controlFunc={this.handlePlayerNameChange}
-          content={this.state.playerName}
-          placeholder={'Player name'}
-        />
-        <Select 
-          name={'position'}
-          placeholder={'Position'}
-          controllerFunc={this.handlePositionSelect}
-          options={this.state.playerPositions}
-          selectedOption={this.state.playerPosition}
-        />
-        <SingleInput 
-          inputType={'number'}
-          title={'Age'}
-          controlFunc={this.handlePlayerAgeChange}
-          content={this.state.playerAge}
-          placeholder={'Age'}
-        />
+        <Form inline onSubmit={this.handleFormSubmit}>
+          <SingleInput 
+            inputType={'text'}
+            title={'Player name'}
+            controlFunc={this.handlePlayerNameChange}
+            content={this.state.playerName}
+            placeholder={'Player name'}
+          />
+          <Select 
+            name={'position'}
+            placeholder={'Position'}
+            controlFunc={this.handlePositionSelect}
+            options={this.state.playerPositions}
+            selectedOption={this.state.playerPosition}
+          />
+          <SingleInput 
+            inputType={'number'}
+            title={'Age'}
+            controlFunc={this.handlePlayerAgeChange}
+            content={this.state.playerAge}
+            placeholder={'Age'}
+          />
+          <Button color="primary">Search</Button>
+        </Form>
       </div>
     )
   }
