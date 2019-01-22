@@ -6,9 +6,9 @@ import { Input } from 'reactstrap'
 const Select = (props) => {
   return (
     <div>
-      <Input type="select" name="select" id="exampleSelect">
+      <Input type="select" name="select" id="exampleSelect" onChange={props.controlFunc}>
         {props.options.map((option) => {
-          return (<option key={option}>{option}</option>)
+          return (<option key={option} value={option}>{option}</option>)
         })}
       </Input>
     </div>

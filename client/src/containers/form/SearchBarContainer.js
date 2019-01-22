@@ -28,21 +28,23 @@ class SearchBarContainer extends Component {
   }
 
   handlePlayerNameChange = e => {
-    console.log('handle player name')
     this.setState({playerName : e.target.value})
+    console.log('player name: ',this.state.playerName)
   }
 
   handlePlayerAgeChange = e => {
-    console.log('handle player age')
+    this.setState({playerAge : e.target.value})
+    console.log('player age: ',this.state.playerAge)
   }
 
   handlePositionSelect = e => {
-    console.log('handle position select')
+    this.setState({playerPosition: e.target.value})
+    console.log('Position selected', this.state.playerPosition)
   }
 
   onChange = (e) => {
     this.setState({[e.target.name]: e.target.value})
-    console.log(this.state)
+    console.log('player age', this.state)
   }
 
   onSubmit =(e) => {
