@@ -13,50 +13,45 @@ class SearchBarContainer extends Component {
       playerName: '',
       playerPositions: ['Goal Keeper', 'Defender', 'Midfielder', 'Forward'],
       playerPosition: 'Position',
-      playerAge: ''
+      playerAge: '',
+      players: []
     }
   }
 
   componentWillMount(){
-    this.props.fetchPlayers()
-    console.log('props', this.props)
+    fetch('https://football-players-b31f2.firebaseio.com/players.json')
+    .then(res => res.json())
+    .then(data =>{ 
+      this.setState({players: data})
+    })
   }
+
 
   handleFormSubmit = (e) => {
     e.preventDefault()
-    console.log('state', this.state)
+    const player = {
+      name: this.state.playerName,
+      position: this.state.playerPosition,
+      age: this.state.playerAge
+    }
+    let playerFound = this.state.players.filter((item)=> (player.name == item.name || player.position == item.position))
+    console.log('playerFound', playerFound)
   }
 
   handlePlayerNameChange = e => {
     this.setState({playerName : e.target.value})
-    console.log('player name: ',this.state.playerName)
   }
 
   handlePlayerAgeChange = e => {
     this.setState({playerAge : e.target.value})
-    console.log('player age: ',this.state.playerAge)
   }
 
   handlePositionSelect = e => {
     this.setState({playerPosition: e.target.value})
-    console.log('Position selected', this.state.playerPosition)
   }
 
   onChange = (e) => {
     this.setState({[e.target.name]: e.target.value})
-    console.log('player age', this.state)
-  }
-
-  onSubmit =(e) => {
-    e.preventDefault()
-    const player = {
-      name: this.state.name,
-      position: this.state.position,
-      age: this.state.age
-    }
-    this.props.findPlayer(player)
-    console.log(this.state)
-    console.log('submit') 
   }
 
 
@@ -85,7 +80,7 @@ class SearchBarContainer extends Component {
             content={this.state.playerAge}
             placeholder={'Age'}
           />
-          <Button color="primary">Search</Button>
+          <Button color="primary" type="submit" >Search</Button>
         </Form>
       </div>
     )

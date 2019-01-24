@@ -1,7 +1,19 @@
 .filterable-table {
   display: flex;
   justify-content: center;
+  flex-direction: column;
 } 
+.filterable-table form {
+  justify-content: center;
+}
+
+.filterable-table .table {
+  margin: auto;
+  width: 70%;
+  border: 1px solid #cecece
+}
+
+
 
 header {
   color: white;
@@ -15,7 +27,7 @@ header {
   width: 70%;
 }
 Form div {
-  padding: 10px;
+  padding: 20px;
 }
 header h1 {
   font-family: "Helvetica";
