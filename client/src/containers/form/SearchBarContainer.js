@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
-import { fetchPlayers, findPlayer } from '../../actions/searchBarActions'
+
+import { fetchPlayers } from '../../actions/searchBarActions'
 import { Form, Button } from 'reactstrap'
+
 import Select from '../../components/form/Select'
 import SingleInput from '../../components/form/SingleInput'
 
@@ -19,23 +22,15 @@ class SearchBarContainer extends Component {
   }
 
   componentWillMount(){
-    fetch('https://football-players-b31f2.firebaseio.com/players.json')
-    .then(res => res.json())
-    .then(data =>{ 
-      this.setState({players: data})
-    })
+    this.props.fetchPlayers()
   }
+
 
 
   handleFormSubmit = (e) => {
     e.preventDefault()
-    const player = {
-      name: this.state.playerName,
-      position: this.state.playerPosition,
-      age: this.state.playerAge
-    }
-    let playerFound = this.state.players.filter((item)=> (player.name == item.name || player.position == item.position))
-    console.log('playerFound', playerFound)
+    console.log("submit!")
+    
   }
 
   handlePlayerNameChange = e => {
@@ -53,7 +48,6 @@ class SearchBarContainer extends Component {
   onChange = (e) => {
     this.setState({[e.target.name]: e.target.value})
   }
-
 
   render() {
     return (
@@ -80,22 +74,19 @@ class SearchBarContainer extends Component {
             content={this.state.playerAge}
             placeholder={'Age'}
           />
-          <Button color="primary" type="submit" >Search</Button>
+          <Button color="primary" type="submit">Search</Button>
         </Form>
       </div>
     )
   }
 }
 
-
-const mapStateToProps = state => ({
-  players: state.players,
-  player: state.player
-})
-
 SearchBarContainer.propTypes = {
-  fetchPlayers: PropTypes.func.isRequired,
-  findPlayer: PropTypes.func.isRequired
+  fetchPlayers: PropTypes.func.isRequired
 }
 
-export default connect(mapStateToProps, { fetchPlayers, findPlayer })(SearchBarContainer) 
+const matchDispatchToProps = (dispatch) => {
+  return bindActionCreators({fetchPlayers}, dispatch)
+}
+
+export default connect(null, matchDispatchToProps)(SearchBarContainer) 

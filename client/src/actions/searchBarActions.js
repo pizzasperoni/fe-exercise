@@ -1,4 +1,4 @@
-import { FETCH_PLAYERS, FIND_PLAYER } from './types'
+import { FETCH_PLAYERS } from './types'
 
 export const fetchPlayers = () => dispatch => {
   fetch('https://football-players-b31f2.firebaseio.com/players.json')
@@ -7,12 +7,4 @@ export const fetchPlayers = () => dispatch => {
     type: FETCH_PLAYERS,
     payload: players
   }))
-}
-
-
-export const findPlayer = (player) => dispatch => {
-  dispatch({
-    type: FIND_PLAYER,
-    payload: player
-  })
 }

@@ -1,2 +1,2 @@
 export const FETCH_PLAYERS = 'FETCH_PLAYERS'
-export const FIND_PLAYER = 'FIND_PLAYER'
+export const SEARCH_PLAYER = 'SEARCH_PLAYER'

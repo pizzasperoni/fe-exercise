@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import searchBarReducer from './searchBarReducer'
+import playersReducer from './playersReducer'
 
 export default combineReducers({
-  players: searchBarReducer
+  players: playersReducer
 })
