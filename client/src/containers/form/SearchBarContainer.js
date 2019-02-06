@@ -16,7 +16,7 @@ class SearchBarContainer extends Component {
   }
 
   componentDidMount() {
-    console.log('players', this.props.players)
+    // console.log('players', this.props.players)
   }
 
   componentWillReceiveProps(props) {
