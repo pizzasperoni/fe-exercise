@@ -11,7 +11,7 @@ class PlayersTable extends Component {
           <th scope="row">{player.name}</th>
           <td>{player.position}</td>
           <td>{player.nationality}</td>
-          <td>{player.dateOfBirth}</td>
+          <td>{player.age}</td>
         </tr>
       )
     })
@@ -25,7 +25,7 @@ class PlayersTable extends Component {
               <th>Player</th>
               <th>Position</th>
               <th>Team</th>
-              <th>Date of Birth</th>
+              <th>Age</th>
             </tr>
           </thead>
           <tbody>

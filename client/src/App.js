@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux'
 import store from './store'
 import SearchBarContainer from './containers/form/SearchBarContainer'
-import PlayersTable from './components/table/PlayersTable'
+import PlayersTable from './containers/table/PlayersTable'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
