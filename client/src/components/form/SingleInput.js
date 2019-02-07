@@ -24,7 +24,8 @@ SingleInput.propTypes = {
   content: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number
-  ]).isRequired,
+  ]),
+  //.isRequired,
   placeholder: PropTypes.string,
 }
 

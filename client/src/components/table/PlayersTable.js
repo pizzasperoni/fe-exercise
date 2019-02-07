@@ -3,10 +3,11 @@ import { connect } from 'react-redux'
 import { Table } from 'reactstrap'
 
 class PlayersTable extends Component {
+
   getPlayers = () => {
     return this.props.players.map((player)=> {
       return (
-        <tr>
+        <tr key={player.name}>
           <th scope="row">{player.name}</th>
           <td>{player.position}</td>
           <td>{player.nationality}</td>
@@ -14,7 +15,6 @@ class PlayersTable extends Component {
         </tr>
       )
     })
-    
   }
 
   render() {

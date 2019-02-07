@@ -6,8 +6,8 @@ import PropTypes from 'prop-types'
 import { fetchPlayers, searchPlayer } from '../../actions/searchBarActions'
 import { Form, Button } from 'reactstrap'
 
-//import Select from '../../components/form/Select'
-//import SingleInput from '../../components/form/SingleInput'
+import Select from '../../components/form/Select'
+import SingleInput from '../../components/form/SingleInput'
 
 class SearchBarContainer extends Component {
  
@@ -50,27 +50,27 @@ class SearchBarContainer extends Component {
     return (
       <div>
         <Form inline onSubmit={this.handleFormSubmit}>
-          {/* <SingleInput 
+          <SingleInput 
             inputType={'text'}
             title={'Player name'}
             controlFunc={this.handlePlayerNameChange}
             content={this.props.playerName}
             placeholder={'Player name'}
-          /> */}
-          {/* <Select 
+          />
+          <Select 
             name={'position'}
             placeholder={'Position'}
             controlFunc={this.handlePositionSelect}
             options={this.props.playerPositions}
             selectedOption={this.props.playerPosition}
-          /> */}
-          {/* <SingleInput 
+          />
+          <SingleInput 
             inputType={'number'}
             title={'Age'}
             controlFunc={this.handlePlayerAgeChange}
             content={this.props.playerAge}
             placeholder={'Age'}
-          /> */}
+          />
           <Button color="primary" type="submit">Search</Button>
         </Form>
       </div>

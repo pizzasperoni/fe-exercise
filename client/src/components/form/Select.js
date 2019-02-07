@@ -1,18 +1,25 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
 import { Input } from 'reactstrap'
 
-const Select = (props) => {
-  return (
-    <div>
-      <Input type="select" name="select" id="exampleSelect" onChange={props.controlFunc}>
-        {props.options.map((option) => {
-          return (<option key={option} value={option}>{option}</option>)
-        })}
+class Select extends Component {
+  componentWillMount() {
+    console.log('Select options', this.props.options)
+  }
+
+  render(){
+    return (
+      <div>
+        <Input type="select" name="select" id="exampleSelect" onChange={this.props.controlFunc}>
+          {this.props.options.map((option) => {
+            return (<option key={option} value={option}>{option}</option>)
+          })}
       </Input>
     </div>
-  )
+    )
+  }  
 }
 
 Select.propTypes = {
@@ -22,5 +29,8 @@ Select.propTypes = {
   placeholder: PropTypes.string
 }
 
+const mapStateToProps = state => ({
+  options: state.players.playerPositions,
+})
 
-export default Select
+export default connect(mapStateToProps)(Select)

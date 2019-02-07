@@ -2,7 +2,7 @@ import { FETCH_PLAYERS, SEARCH_PLAYER } from '../actions/types'
 
 const initialState = {
   playerName: '',
-  playerPositions: ['Goal Keeper', 'Defender', 'Midfielder', 'Forward'],
+  playerPositions: ['Position', 'Attacking Midfield', 'Central Midfield', 'Centre-Back', 'Centre-Forward', 'Defensive Midfield', 'Keeper', 'Left Midfield', 'Left Wing', 'Left-Back', 'Right-Back'],
   playerPosition: 'Position',
   playerAge: '',
   players: []
