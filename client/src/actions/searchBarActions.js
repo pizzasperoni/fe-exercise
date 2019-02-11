@@ -18,11 +18,6 @@ export const fetchPlayers = () => dispatch => {
       payload: players
     })
   })
-  
-  // .then(players => dispatch({
-  //   type: FETCH_PLAYERS,
-  //   payload: players
-  // }))
 }
 
 export const searchPlayer = (player) => (dispatch) => {

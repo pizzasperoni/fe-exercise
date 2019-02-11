@@ -15,11 +15,7 @@ class SearchBarContainer extends Component {
     this.props.fetchPlayers()
   }
 
-  componentDidMount() {
-    // console.log('players', this.props.players)
-  }
-
-  componentWillReceiveProps(props) {
+  componentWillReceiveProps() {
     console.log('re render', this.props.players)
   }
 
@@ -31,19 +27,19 @@ class SearchBarContainer extends Component {
   }
 
   handlePlayerNameChange = e => {
-    this.setprops({playerName : e.target.value})
+    console.log('handler name',e.target.value)
   }
 
   handlePlayerAgeChange = e => {
-    this.setprops({playerAge : e.target.value})
+    this.setState({playerAge : e.target.value})
   }
 
   handlePositionSelect = e => {
-    this.setprops({playerPosition: e.target.value})
+    this.setState({playerPosition: e.target.value})
   }
 
   onChange = (e) => {
-    this.setprops({[e.target.name]: e.target.value})
+    this.setState({[e.target.name]: e.target.value})
   }
 
   render() {
@@ -61,6 +57,7 @@ class SearchBarContainer extends Component {
             name={'position'}
             placeholder={'Position'}
             controlFunc={this.handlePositionSelect}
+            onKeyPress={e => (e.charCode >= 65 && e.charCode <= 90) || (e.charCode >= 97 && e.charCode <= 122)}
             options={this.props.playerPositions}
             selectedOption={this.props.playerPosition}
           />
