@@ -35,6 +35,9 @@ export const selectPosition = (playerPosition, players) => (dispatch) => {
   })
   dispatch({
     type: SELECT_POSITION,
-    payload: playersOnSelectedPosition
+    payload: {
+      selectedPosition: playerPosition, 
+      playersFiltered: playersOnSelectedPosition
+    }
   })
 }

@@ -17,7 +17,7 @@ class SearchBarContainer extends Component {
     this.props.fetchPlayers()
   }
   componentWillReceiveProps(){
-    console.log('state', store.getState())
+    //console.log('state', store.getState())
   }
 
   handleFormSubmit = (e) => {
@@ -36,11 +36,7 @@ class SearchBarContainer extends Component {
   }
 
   handlePositionSelect = e => {
-    if (e.target.value !== "Position"){
-      this.props.selectPosition(e.target.value, this.props.players)
-    } else {
-      this.props.fetchPlayers()
-    }
+    this.props.selectPosition(e.target.value, this.props.players)
   }
 
   onChange = (e) => {
@@ -89,7 +85,7 @@ const matchDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = state => ({
-  players: state.players.players,
+  players: state.players.allPlayers,
   searchPosition: state.players.playerPosition
 })
 

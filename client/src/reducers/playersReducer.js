@@ -7,29 +7,30 @@ import {
 const initialState = {
   playerName: '',
   playerPositions: ['Position', 'Attacking Midfield', 'Central Midfield', 'Centre-Back', 'Centre-Forward', 'Defensive Midfield', 'Keeper', 'Left Midfield', 'Left Wing', 'Left-Back', 'Right-Back'],
-  playerPosition: 'Position',
+  selectedPosition: 'Position',
   playerAge: '',
-  players: []
+  allPlayers: [],
+  playersFiltered: []
 }
 
 
 const playersReducer = (state=initialState, action) => {
   switch (action.type) {
     case FETCH_PLAYERS :
-      //console.log('FETCH_PLAYERS', action.payload)
       return {
         ...state,
-        players: action.payload
+        allPlayers: action.payload
       }
     case SEARCH_PLAYER:
       return {
         ...state,
-        player: action.payload
+        playersFiltered: action.payload
       }
     case SELECT_POSITION:
       return {
         ...state,
-        players: action.payload
+        playersFiltered: action.payload.playersFiltered,
+        selectedPosition: action.payload.selectedPosition
       }
     default:
       return state
