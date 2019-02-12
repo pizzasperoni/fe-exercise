@@ -21,15 +21,15 @@ class PlayersTable extends Component {
     return (
       <Table hover className="table">
         <thead>
-            <tr>
-              <th>Player</th>
-              <th>Position</th>
-              <th>Team</th>
-              <th>Age</th>
-            </tr>
-          </thead>
-          <tbody>
-              {this.getPlayers()}
+          <tr>
+            <th>Player</th>
+            <th>Position</th>
+            <th>Team</th>
+            <th>Age</th>
+          </tr>
+        </thead>
+        <tbody>
+            {this.getPlayers()}
         </tbody>
       </Table>
     )

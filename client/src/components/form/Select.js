@@ -5,10 +5,6 @@ import { connect } from 'react-redux'
 import { Input } from 'reactstrap'
 
 class Select extends Component {
-  componentWillMount() {
-    console.log('Select options', this.props.options)
-  }
-
   render(){
     return (
       <div>

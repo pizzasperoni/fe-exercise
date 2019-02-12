@@ -1,4 +1,8 @@
-import { FETCH_PLAYERS, SEARCH_PLAYER } from '../actions/types'
+import { 
+  FETCH_PLAYERS, 
+  SEARCH_PLAYER,
+  SELECT_POSITION
+} from '../actions/types'
 
 const initialState = {
   playerName: '',
@@ -12,7 +16,7 @@ const initialState = {
 const playersReducer = (state=initialState, action) => {
   switch (action.type) {
     case FETCH_PLAYERS :
-      console.log('FETCH_PLAYERS', action.payload)
+      //console.log('FETCH_PLAYERS', action.payload)
       return {
         ...state,
         players: action.payload
@@ -21,6 +25,11 @@ const playersReducer = (state=initialState, action) => {
       return {
         ...state,
         player: action.payload
+      }
+    case SELECT_POSITION:
+      return {
+        ...state,
+        players: action.payload
       }
     default:
       return state

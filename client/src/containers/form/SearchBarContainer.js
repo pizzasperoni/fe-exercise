@@ -3,39 +3,44 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 
-import { fetchPlayers, searchPlayer } from '../../actions/searchBarActions'
+import { fetchPlayers, searchPlayer, selectPosition } from '../../actions/searchBarActions'
 import { Form, Button } from 'reactstrap'
 
 import Select from '../../components/form/Select'
 import SingleInput from '../../components/form/SingleInput'
+import AgeInput from '../../components/form/AgeInput';
+import store from '../../store'
 
 class SearchBarContainer extends Component {
- 
+  
   componentWillMount(){
     this.props.fetchPlayers()
   }
-
-  componentWillReceiveProps() {
-    console.log('re render', this.props.players)
+  componentWillReceiveProps(){
+    console.log('state', store.getState())
   }
-
 
   handleFormSubmit = (e) => {
     e.preventDefault()
-    console.log("submit!")
-    this.props.fetchPlayers()    
+    //console.log('submit props',this.props)   
   }
 
   handlePlayerNameChange = e => {
-    console.log('handler name',e.target.value)
+    //console.log('handler name',e.target.value)
   }
 
   handlePlayerAgeChange = e => {
-    this.setState({playerAge : e.target.value})
+    if(e.target.value > 40){
+      e.target.value = 40
+    }
   }
 
   handlePositionSelect = e => {
-    this.setState({playerPosition: e.target.value})
+    if (e.target.value !== "Position"){
+      this.props.selectPosition(e.target.value, this.props.players)
+    } else {
+      this.props.fetchPlayers()
+    }
   }
 
   onChange = (e) => {
@@ -47,7 +52,6 @@ class SearchBarContainer extends Component {
       <div>
         <Form inline onSubmit={this.handleFormSubmit}>
           <SingleInput 
-            inputType={'text'}
             title={'Player name'}
             controlFunc={this.handlePlayerNameChange}
             content={this.props.playerName}
@@ -57,12 +61,10 @@ class SearchBarContainer extends Component {
             name={'position'}
             placeholder={'Position'}
             controlFunc={this.handlePositionSelect}
-            onKeyPress={e => (e.charCode >= 65 && e.charCode <= 90) || (e.charCode >= 97 && e.charCode <= 122)}
             options={this.props.playerPositions}
             selectedOption={this.props.playerPosition}
           />
-          <SingleInput 
-            inputType={'number'}
+          <AgeInput 
             title={'Age'}
             controlFunc={this.handlePlayerAgeChange}
             content={this.props.playerAge}
@@ -78,15 +80,17 @@ class SearchBarContainer extends Component {
 SearchBarContainer.propTypes = {
   fetchPlayers: PropTypes.func.isRequired,
   searchPlayer: PropTypes.func.isRequired,
+  selectPosition: PropTypes.func.isRequired,
   players: PropTypes.array.isRequired
 }
 
 const matchDispatchToProps = (dispatch) => {
-  return bindActionCreators({fetchPlayers, searchPlayer}, dispatch)
+  return bindActionCreators({fetchPlayers, searchPlayer, selectPosition}, dispatch)
 }
 
 const mapStateToProps = state => ({
   players: state.players.players,
+  searchPosition: state.players.playerPosition
 })
 
 export default connect(mapStateToProps, matchDispatchToProps)(SearchBarContainer) 

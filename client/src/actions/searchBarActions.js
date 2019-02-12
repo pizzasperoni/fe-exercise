@@ -1,4 +1,4 @@
-import { FETCH_PLAYERS, SEARCH_PLAYER } from './types'
+import { FETCH_PLAYERS, SEARCH_PLAYER, SELECT_POSITION } from './types'
 import moment from 'moment'
 
 
@@ -24,5 +24,17 @@ export const searchPlayer = (player) => (dispatch) => {
   dispatch({
     type: SEARCH_PLAYER,
     payload: player
+  })
+}
+
+export const selectPosition = (playerPosition, players) => (dispatch) => {
+  let playersOnSelectedPosition = players.filter((player) => {
+    if (player.position == playerPosition){
+      return player
+    }
+  })
+  dispatch({
+    type: SELECT_POSITION,
+    payload: playersOnSelectedPosition
   })
 }

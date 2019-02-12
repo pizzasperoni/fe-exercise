@@ -2,20 +2,20 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Input } from 'reactstrap'
 
-class SingleInput extends Component {
+class AgeInput extends Component {
 
   onKeyPress = e => {
-    if (!((e.charCode >= 65 && e.charCode <= 90) || (e.charCode >= 97 && e.charCode <= 122))){
+    if (!((e.charCode >= 65 && e.charCode <= 90) || (e.charCode >= 97 && e.charCode <= 122)) && (this.props.inputType === "text")){
       e.preventDefault()
     }
   }
-
+ 
   render() {
     return (
       <div>
         <Input 
           name={this.props.playerName}
-          type="text"
+          type="number"
           value={this.props.content}
           onChange={this.props.controlFunc}
           onKeyPress={this.onKeyPress}
@@ -27,7 +27,7 @@ class SingleInput extends Component {
   
 }
 
-SingleInput.propTypes = {
+AgeInput.propTypes = {
   title: PropTypes.string.isRequired,
   name: PropTypes.string,
   controlFunc: PropTypes.func.isRequired,
@@ -39,4 +39,4 @@ SingleInput.propTypes = {
   placeholder: PropTypes.string,
 }
 
-export default SingleInput
+export default AgeInput
