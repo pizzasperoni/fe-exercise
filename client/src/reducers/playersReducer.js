@@ -1,7 +1,8 @@
 import { 
   FETCH_PLAYERS, 
-  SEARCH_PLAYER,
-  SELECT_POSITION
+  SEARCH_BY_NAME,
+  SELECT_POSITION,
+  FIND_BY_AGE
 } from '../actions/types'
 
 const initialState = {
@@ -10,7 +11,10 @@ const initialState = {
   selectedPosition: 'Position',
   playerAge: '',
   allPlayers: [],
-  playersFiltered: []
+  playersFiltered: [],
+  playersByName: [],
+  playersByGivenAge: [],
+  playersBySelect: []
 }
 
 
@@ -21,16 +25,21 @@ const playersReducer = (state=initialState, action) => {
         ...state,
         allPlayers: action.payload
       }
-    case SEARCH_PLAYER:
+    case SEARCH_BY_NAME:
       return {
         ...state,
-        playersFiltered: action.payload
+        playersByName: action.payload
       }
     case SELECT_POSITION:
       return {
         ...state,
-        playersFiltered: action.payload.playersFiltered,
+        playersBySelect: action.payload.playersBySelect,
         selectedPosition: action.payload.selectedPosition
+      }
+    case FIND_BY_AGE:
+      return {
+        ...state,
+        playersByGivenAge: action.payload
       }
     default:
       return state

@@ -5,7 +5,7 @@ import { Input } from 'reactstrap'
 class SingleInput extends Component {
 
   onKeyPress = e => {
-    if (!((e.charCode >= 65 && e.charCode <= 90) || (e.charCode >= 97 && e.charCode <= 122))){
+    if (!((e.charCode >= 65 && e.charCode <= 90) || (e.charCode >= 97 && e.charCode <= 122 || e.charCode === 32))){
       e.preventDefault()
     }
   }

@@ -3,13 +3,12 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 
-import { fetchPlayers, searchPlayer, selectPosition } from '../../actions/searchBarActions'
-import { Form, Button } from 'reactstrap'
+import { fetchPlayers, selectPosition, searchByAge, searchByName } from '../../actions/searchBarActions'
+import { Form } from 'reactstrap'
 
 import Select from '../../components/form/Select'
 import SingleInput from '../../components/form/SingleInput'
 import AgeInput from '../../components/form/AgeInput';
-import store from '../../store'
 
 class SearchBarContainer extends Component {
   
@@ -20,30 +19,22 @@ class SearchBarContainer extends Component {
     //console.log('state', store.getState())
   }
 
-  handleFormSubmit = (e) => {
-    e.preventDefault()
-    //console.log('submit props',this.props)   
-  }
-
-  handlePlayerNameChange = e => {
-    //console.log('handler name',e.target.value)
+   handlePlayerNameChange = e => {
+    this.props.searchByName(e.target.value, this.props.players)
   }
 
   handlePlayerAgeChange = e => {
     if(e.target.value > 40){
       e.target.value = 40
     }
+    this.props.searchByAge(e.target.value, this.props.players)
   }
 
   handlePositionSelect = e => {
     this.props.selectPosition(e.target.value, this.props.players)
   }
 
-  onChange = (e) => {
-    this.setState({[e.target.name]: e.target.value})
-  }
-
-  render() {
+   render() {
     return (
       <div>
         <Form inline onSubmit={this.handleFormSubmit}>
@@ -66,7 +57,6 @@ class SearchBarContainer extends Component {
             content={this.props.playerAge}
             placeholder={'Age'}
           />
-          <Button color="primary" type="submit">Search</Button>
         </Form>
       </div>
     )
@@ -75,13 +65,17 @@ class SearchBarContainer extends Component {
 
 SearchBarContainer.propTypes = {
   fetchPlayers: PropTypes.func.isRequired,
-  searchPlayer: PropTypes.func.isRequired,
   selectPosition: PropTypes.func.isRequired,
   players: PropTypes.array.isRequired
 }
 
 const matchDispatchToProps = (dispatch) => {
-  return bindActionCreators({fetchPlayers, searchPlayer, selectPosition}, dispatch)
+  return bindActionCreators({
+    fetchPlayers,  
+    selectPosition, 
+    searchByAge,
+    searchByName
+  }, dispatch)
 }
 
 const mapStateToProps = state => ({

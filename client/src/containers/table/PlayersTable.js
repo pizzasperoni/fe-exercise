@@ -6,12 +6,19 @@ class PlayersTable extends Component {
 
   getPlayers = () => {
     let allPlayers = this.props.players
-    let playersFiltered = this.props.playersFiltered
+    let playersFiltered = this.props.playersBySelect
     let selectedPosition = this.props.selectedPosition
-    
+    let playersByGivenAge = this.props.playersByGivenAge
+    let playersByName = this.props.playersByName
+     
     if (selectedPosition == "Position"){
       playersFiltered = allPlayers
     }
+
+    if(playersByName.length < playersByGivenAge.length && playersByName.length > 0){
+      playersFiltered = playersByName
+    }
+
     return playersFiltered.map((player)=> {
       return (
         <tr key={player.name}>
@@ -45,8 +52,10 @@ class PlayersTable extends Component {
 
 const mapStateToProps = state => ({
   players: state.players.allPlayers,
-  playersFiltered: state.players.playersFiltered,
-  selectedPosition: state.players.selectedPosition
+  playersBySelect: state.players.playersBySelect,
+  playersByGivenAge: state.players.playersByGivenAge,
+  selectedPosition: state.players.selectedPosition,
+  playersByName: state.players.playersByName
 })
 
 export default connect(mapStateToProps)(PlayersTable) 

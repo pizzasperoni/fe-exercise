@@ -1,4 +1,10 @@
-import { FETCH_PLAYERS, SEARCH_PLAYER, SELECT_POSITION } from './types'
+import { 
+  FETCH_PLAYERS, 
+  SEARCH_BY_NAME, 
+  SELECT_POSITION,
+  FIND_BY_AGE
+ } from './types'
+
 import moment from 'moment'
 
 
@@ -20,10 +26,34 @@ export const fetchPlayers = () => dispatch => {
   })
 }
 
-export const searchPlayer = (player) => (dispatch) => {
+export const searchByName = (playerName, players) => (dispatch) => {
+  let playersByName = players.filter((player)=>{
+    if(player.name === playerName){
+      return player
+    }
+  })
+  if (playerName === ''){
+    playersByName = players
+  }
+  console.log('playersByName', playersByName)
   dispatch({
-    type: SEARCH_PLAYER,
-    payload: player
+    type: SEARCH_BY_NAME,
+    payload: playersByName
+  })
+}
+
+export const searchByAge = (playerAge, players) => (dispatch) => {
+  let playersByGivenAge = players.filter((player)=> {
+    if (player.age === playerAge){
+      return player
+    }
+  })
+  if(playerAge === ''){
+    playersByGivenAge = players
+  }
+  dispatch({
+    type: FIND_BY_AGE,
+    payload: playersByGivenAge
   })
 }
 
@@ -37,7 +67,7 @@ export const selectPosition = (playerPosition, players) => (dispatch) => {
     type: SELECT_POSITION,
     payload: {
       selectedPosition: playerPosition, 
-      playersFiltered: playersOnSelectedPosition
+      playersBySelect: playersOnSelectedPosition
     }
   })
 }
